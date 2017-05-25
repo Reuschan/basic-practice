@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <style type="text/css">
+  .box1{
+  	width:200px;
+  	height:200px;
+  	background-color: red;
+  	float:left;
+  }
+  .box2{
+  	width:300px;
+  	height:300px;
+  	margin:50px auto;
+  	background-color: green;
+  	display:none;
+  }
+  
+
+  </style>
+</head>
+
+
+<body>
+  <div class="box1"></div>
+  <div class="box2"></div>
+
+<script type="text/javascript">
+window.onload=function(){
+	var timer="";
+	var box1=document.querySelector('.box1');
+	var box2=document.querySelector('.box2');
+	
+        box1.onmouseover=function(){
+		box2.style.display='block';
+		clearTimeout(timer);
+	    };
+
+	    box2.onmouseover=function(){
+		clearTimeout(timer);
+	    };
+
+    function hideBox(){ 
+	   timer=setTimeout(function(){box2.style.display='none';},2000);
+    }; 
+
+   box1.onmouseout=hideBox;
+   box2.onmouseout=hideBox;
+}
+</script>
+
+</body>
+</html>

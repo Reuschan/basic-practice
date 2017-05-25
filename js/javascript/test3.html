@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <style type="text/css">
+    #box{
+    	width:300px;
+    	height:400px;
+    	margin:30px auto;
+    	background-color: red;
+    	border:2px solid #000;
+    }
+    input[type="button"]{
+    	margin:10px auto;
+    	width:100px;
+    	display:block;
+    } 
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <input type="button" value="获取背景颜色" id="btn1">
+  <script type="text/javascript">
+    function getStyle(obj,attr){
+      if(obj.currentStyle){
+        return attr+": "+obj.currentStyle[attr];
+      }else{
+      	return attr+"："+getComputedStyle(obj,false)[attr];
+      };
+    }
+
+    window.onload=function(){
+    	var box=document.getElementById("box");
+    	var btn1=document.getElementById("btn1");
+    	btn1.onclick=function(){
+    		alert(getStyle(box,'backgroundColor'));
+    	};
+    }
+
+    /*要点；取非行间样式：如果样式没有写在行间，那么应该利用currentStyle(IE)或者getComputedStyle(obj，false).attr。利用if，else来进行兼容性处理；获取复合样式的属性时需要注明所取的明确样式（如获取背景颜色，需要写backgroundColor，直接写background是没有作用的），试了一下在IE下获取样式，总是报错属性未定义
+    暂时没有找到是什么原因，不知道是不是我电脑IE浏览器的原因。
+    */
+  </script>
+</body>
+</html>

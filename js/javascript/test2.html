@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <style type="text/css">
+  input[type="text"]{
+  	width:30px;
+  }
+  </style>
+</head>
+
+
+<body>
+  <input type="text" id="txt1">+<input type="text" id="txt2">=<input type="button" value="求和" id="sum">
+
+<script type="text/javascript">
+window.onload=function(){
+  var txt1=document.getElementById("txt1");
+  var txt2=document.getElementById("txt2");
+  var total=document.getElementById("sum");
+  
+  total.onclick=function(){
+  	var num1= parseFloat(txt1.value);
+  	var num2= parseFloat(txt2.value);
+  	if(isNaN(num1)){
+  		alert("请输入正确的数字")
+  	}else if(isNaN(num2)){
+  		alert("请输入正确的数字")
+  	}else{
+        total.value=num1+num2;
+        console.log(num1,num2);
+  	};
+  };    
+}
+/*要点：1.parseInt和parseFloat将字符串转化成数字,前者只能转化成整数，
+          后者可转化成小数,即浮点数。
+        2.isNaN用于判断其参数是否为NaN,通常用于判断parseInt和parseFloat
+          的结果。当参数为数字时，则返回false;当参数为NaN时，则返回true。  
+*/
+
+</script>
+</body>
+</html>
