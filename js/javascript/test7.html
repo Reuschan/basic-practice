@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <style type="text/css">
+    .form{
+    	width:300px;
+    	height:100px;
+    	margin:20px auto;
+    }
+    .btn{
+    	width:300px;
+    	height:50px;
+    	margin:20px auto;
+    }
+    input[type="button"]{
+    	width:80px;
+    	height:20px;
+    	margin-left:20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form">
+    <ul class="list">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+    </ul>
+      
+    <div class="btn">
+      <input type="button" value="增加" class="add">
+      <input type="button" value="删除" class="del">
+    </div>
+
+  </div>
+  
+  
+
+<script type="text/javascript">
+window.onload=function(){
+	var form=document.querySelector(".form");
+	var list=form.querySelector(".list");
+	var items=list.getElementsByTagName("li");
+	var add=document.querySelector(".add");
+	var del=document.querySelector(".del");
+
+	add.onclick=function(){
+		var lis=document.createElement("li");
+		if(items.length>0){
+			list.insertBefore(lis,items[0]);
+		}else{
+			list.appendChild(lis);
+		}
+	}
+
+	del.onclick=function(){
+		if(items.length==0){
+			alert("不能再删了！")
+		}else{
+			list.removeChild(items[items.length-1]);
+		}
+	}
+}
+
+/*要点：1.creatElement:创建元素,语法createElement(element)，
+          创建完成后还需要添加到父节点才有效。  
+        2.appendChild：将创建的元素添加到父节点，语法：obj.appendChild(element)
+          ，其中obj为父节点，element为创建出来的元素；如果appendChild的元素为现有的元素，那么使用这个属性的时候会先从现有的父级上删除，然后添加到新的父级里；注意：不管是html中原有的，还是通过DOM创建出来的，性质都是一样的，没有区别。
+        3.insertBefore：在父节点内插入子节点，语法：obj.insertBefore(element, 
+          obj[i])表示在父节点obj中的第i个元素前面插入元素；但是如果obj中本来没有元素，那么就没法obj[i]就不存在，这时候还得用appendChild，所以这两个经常结合使用，解决兼容性问题。
+        4.removeChild：移除子节点，语法obj.removeChild(element)
+          ，其中obj为父节点，element为需要移除的元素。
+*/          
+</script>
+</body>
+</html>

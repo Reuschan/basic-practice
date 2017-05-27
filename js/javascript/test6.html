@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <style type="text/css"></style>
+</head>
+
+<body>
+
+<div id="test">
+
+    <div class="one">
+      <p>我是第一个class中的第一个元素</p>
+      <p>我是第一个class中的第二个元素</p>
+      <p>我是第一个class中的第三个元素</p>
+    </div>
+
+    <div class="two">
+      <p>我是第二个class中的第一个元素</p>
+      <p>我是第二个class中的第二个元素</p>
+      <p>我是第二个class中的第三个元素</p>
+    </div>
+
+    <div class="three">
+      <p>我是第三个class中的第一个元素</p>
+      <p>我是第三个class中的第二个元素</p>
+      <p>我是第三个class中的第三个元素</p>
+    </div>
+
+    <div class="one">
+      <p>我是第四个class中的第一个元素</p>
+      <p>我是第四个class中的第二个元素</p>
+      <p>我是第四个class中的第三个元素</p>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+function getClass(oparent,sclass){
+	var allTag=oparent.getElementsByTagName("*");
+	var result=[];
+	for(var i=0; i<allTag.length; i++){
+		if(allTag[i].className==sclass){
+			result.push(allTag[i]);
+		}
+	}
+	return result;
+}
+
+function firstNode(obj){
+            if (!obj.firstChild){
+                return false;
+            };
+            return obj.firstElementChild || ( obj.firstChild.nodeType==1 ? obj.firstChild : nextNode(obj.firstChild) );
+}
+
+window.onload=function(){
+	var test=document.getElementById("test");
+	var change=getClass(test,"one");
+
+	for(var j=0; j<change.length; j++){
+
+		var node=firstNode(change[j]);
+		node.style.color="red";	
+	}	
+		
+}
+
+/*要点；1.可以封装一个getclass方法来获取指定父元素容器中的class。
+        2.firstElementChild表示第一个元素子节点(不包括文本子节点),这个
+          方法在低版本IE浏览器(IE9以下)需要做兼容性处理。而firstChild表示
+          第一个子节点(包括文本节点)。
+        3.nodeType表示节点类型;nodeType为3时为文本节点,nodeType为1时为元素节点。 
+*/         
+</script>
+
+</body>
+</html>
