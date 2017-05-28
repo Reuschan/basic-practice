@@ -9,29 +9,77 @@
     	height:100px;
     	margin:20px auto;
     }
+    .txt{width:300px;
+         height:80px;
+         text-align:center;
+    }
+    .txt input[type="text"]{
+    	width:120px;
+    	height:20px;
+    	margin-top:10px;
+    	margin-left:20px;
+    }
+    table,td,th{
+    	width:400px;
+    	border:1px solid #000;
+    	text-align:center;
+    	border-collapse:collapse;
+    }
     .btn{
     	width:300px;
     	height:50px;
     	margin:20px auto;
+    	text-align:center;
     }
-    input[type="button"]{
+    .btn input[type="button"]{
     	width:80px;
     	height:20px;
-    	margin-left:20px;
+    	margin-left:30px;
     }
   </style>
 </head>
 
 <body>
   <div class="form">
-    <ul class="list">
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
-      <li>6</li>
-    </ul>
+    <div class="txt">
+      <input type="text" placeholder="请输入名字" class="txt1">
+      <input type="text" placeholder="请输入年龄" class="txt2">
+      <input type="text" placeholder="请输入职业" class="txt3">
+      <input type="text" placeholder="请输入联系方式" class="txt4">
+    </div>
+
+    <table>
+      <tbody class="list">
+        <tr>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>职业</th>
+          <th>联系方式</th>
+        </tr>
+
+        <tr>
+          <td>张三</td>
+          <td>24</td>
+          <td>教师</td>
+          <td>123456789</td>
+        </tr>
+
+        <tr>
+          <td>张三</td>
+          <td>24</td>
+          <td>教师</td>
+          <td>123456789</td>
+        </tr>
+
+        <tr>
+          <td>张三</td>
+          <td>24</td>
+          <td>教师</td>
+          <td>123456789</td>
+        </tr>
+      </tbody>  
+    </table>
+      
       
     <div class="btn">
       <input type="button" value="增加" class="add">
@@ -44,27 +92,70 @@
 
 <script type="text/javascript">
 window.onload=function(){
-	var form=document.querySelector(".form");
-	var list=form.querySelector(".list");
-	var items=list.getElementsByTagName("li");
+	var txt1=document.querySelector(".txt1");
+	var txt2=document.querySelector(".txt2");
+	var txt3=document.querySelector(".txt3");
+	var txt4=document.querySelector(".txt4");
+	var list=document.querySelector(".list");
+	var oRows=list.rows;
 	var add=document.querySelector(".add");
 	var del=document.querySelector(".del");
+    
+    /*定义一个函数来实现隔行不同的背景颜色*/
+	function bgColor(){
+		for(var i=0; i<oRows.length; i++){
+			if(i%2){
+				oRows[i].style.backgroundColor="red";
+			}else{
+				oRows[i].style.backgroundColor="green";
+			}
+		}
+	}
+    bgColor();
+
+    function addRow(){
+    	var trs=document.createElement("tr");
+
+		var tds=document.createElement("td");
+		tds.innerHTML=txt1.value;
+		txt1.value="";
+		trs.appendChild(tds);
+
+		var tds=document.createElement("td");
+		tds.innerHTML=txt2.value;
+		txt2.value="";
+		trs.appendChild(tds);
+
+		var tds=document.createElement("td");
+		tds.innerHTML=txt3.value;
+		txt3.value="";
+		trs.appendChild(tds);
+
+		var tds=document.createElement("td");
+		tds.innerHTML=txt4.value;
+		txt4.value="";
+		trs.appendChild(tds);
+
+		list.appendChild(trs);
+    }
 
 	add.onclick=function(){
-		var lis=document.createElement("li");
-		if(items.length>0){
-			list.insertBefore(lis,items[0]);
+		if(!txt1.value || !txt2.value || !txt3.value || !txt4.value){
+			alert("请输入完整的信息!");
 		}else{
-			list.appendChild(lis);
+		    addRow();
 		}
+		bgColor();
 	}
 
 	del.onclick=function(){
-		if(items.length==0){
+		if(oRows.length==1){
 			alert("不能再删了！")
 		}else{
-			list.removeChild(items[items.length-1]);
+			console.log(list);
+			list.removeChild(oRows[1]);
 		}
+		bgColor();	
 	}
 }
 
@@ -75,7 +166,8 @@ window.onload=function(){
         3.insertBefore：在父节点内插入子节点，语法：obj.insertBefore(element, 
           obj[i])表示在父节点obj中的第i个元素前面插入元素；但是如果obj中本来没有元素，那么就没法obj[i]就不存在，这时候还得用appendChild，所以这两个经常结合使用，解决兼容性问题。
         4.removeChild：移除子节点，语法obj.removeChild(element)
-          ，其中obj为父节点，element为需要移除的元素。
+          ，其中obj为父节点，element为需要移除的元素。在table中，第一个子节点是
+          tbody,而不是tr。第一次设置父节点为table来删除tr，发现不可行会报错，打开浏览器F12，发现table中的第一个子节点是tbody而不是tr。第二次把父节点调整为tbody来删除tr,发现可以了，解决了这个问题。
 */          
 </script>
 </body>
