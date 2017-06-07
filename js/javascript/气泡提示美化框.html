@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+  
+#tooltip{position:absolute;
+  	     padding:6px;
+  	     text-align:center;
+  	     display:none;
+  	     border-radius:3px;
+  	     background-color:#0c0;
+  	     color:#fff;
+  	     text-align:center;
+  	     font-size:12px; 	     
+}
+#tooltip:before{position:absolute;
+ 	            width:0;
+ 	            height:0;
+ 	            border:6px solid #0c0;
+ 	            top:-6px;
+ 	            left:15px;
+ 	            border-bottom-style:solid;
+ 	            border-top:none;
+ 	            border-left-color:transparent;
+ 	            border-right-color:transparent;
+ 	            content:'';
+}
+
+</style> 
+</head>
+
+<body>
+
+<h3 title="关于程序猿的事情">关于程序猿的事情</h3> 
+
+
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.12.2/jquery.min.js"></script>
+<script type="text/javascript">
+    //个性title提示样式
+    $(function() {
+        $("a,h3,img").each(function(b) {//这里是控制标签
+            if (this.title) {
+                var c = this.title; //把title的赋给自定义属性 c ，屏蔽自带提示
+                var a = 20; //设置提示框相对于偏移位置，防止遮挡鼠标
+                $(this).mouseover(function(d) { //鼠标移上事件
+                    this.title = "";
+                    $("body").append('<div id="tooltip">' + c + "</div>"); //创建提示框,添加到页面中
+                    $("#tooltip").css({
+                        left: (d.pageX + a) + "px",
+                        top: (d.pageY + a) + "px",
+                        opacity: "0.8"
+                    }).show(300) //设置提示框的坐标，并显示
+                }).mouseout(function() { //鼠标移出事件
+                    this.title = c; //重新设置title
+                    $("#tooltip").remove() //移除弹出框
+                }).mousemove(function(d) { //跟随鼠标移动事件
+                    $("#tooltip").css({
+                        left: (d.pageX + a) + "px",
+                        top: (d.pageY + a) + "px"
+                    })
+                })
+            }
+        })
+    });
+</script>
+
+
+</body>
+</html>

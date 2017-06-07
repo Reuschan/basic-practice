@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+
+<body>
+<script type="text/javascript">
+  /*function getArr(data){
+  	//获取数组的长度
+  	var arrLen=data.length;
+  	
+  	//创建数组,存放数组下标
+  	var newArr1=[];
+  	for(var i=0; i<arrLen; i++){
+        newArr1[i]=i;
+  	}
+    
+  	//创建数组,生成随机下标数
+  	var newArr2=[];
+  	for(var i=0; i<arrLen; i++){
+  		newArr2[i]=newArr1.splice(Math.floor(Math.random() * newArr1.length),1);
+  	}
+  	
+  	//创建数组,生成对应下标数的数组
+  	var newArr=[];
+  	for(var i=0; i<arrLen; i++){
+  		newArr[i]=arr[newArr2[i]];
+  	}
+
+  	return newArr;	
+  }
+  */
+  
+  //第二种方法
+  function getArr2(num){
+    var Arr=[];
+    for(var i=0; i<num.length; i++){
+      Arr[i]=i;
+    }
+    Arr.sort(function(){return Math.random()>0.5?-1:1;})
+
+    var newArr=[];
+    for(var i=0; i<num.length; i++){
+      newArr[i]=num[Arr[i]];
+    }
+    return newArr;
+
+  }
+
+  var arr=[1,2,3,4,5,6,7,8,9,10,"J","Q","K"];
+  
+  console.log(getArr2(arr));	
+
+</script>
+
+
+</body>
+</html>
