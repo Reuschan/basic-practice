@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <style type="text/css">
+  *{
+  	margin:0;
+  	padding:0;
+  }
+  ul li{
+  	list-style: none;
+  }
+  .box{
+  	width:600px;
+  	height:300px;
+  	margin:20px auto;
+  	position:relative;
+  	overflow:hidden;
+  }
+  .box .pic{
+  	width:3600px;
+  	height:300px;
+  }
+  .box .pic li{
+  	float:left;
+  }
+  .box .pic img{
+  	width:600px;
+  	height:300px;
+  }
+  .box .list{
+  	width:160px;
+  	height:20px;
+  	position:absolute;
+  	bottom:10px;
+  	left:240px;
+  }
+  .box .list .on{
+  	background-color:#fff;
+  	color:red;
+  }
+  .box .list li{
+  	width:20px;
+  	height:20px;
+  	border-radius:20px;
+  	background-color:red;
+  	color:#000;
+  	float:left;
+  	text-align:center;
+  	cursor:pointer;
+  }
+  </style>
+</head>
+
+
+<body>
+  <div class="box">
+    <ul class="pic">
+      <li><img src="../images/pic/jd01.jpg" alt=""></li>
+      <li><img src="../images/pic/jd02.jpg" alt=""></li>
+      <li><img src="../images/pic/jd03.jpg" alt=""></li>
+      <li><img src="../images/pic/jd04.jpg" alt=""></li>
+      <li><img src="../images/pic/jd05.jpg" alt=""></li>
+      <li><img src="../images/pic/jd06.jpg" alt=""></li>
+    </ul>
+
+    <ul class="list">
+      <li class="on">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+    </ul>
+  </div>
+
+<script type="text/javascript">
+window.onload=function(){
+	var box=document.querySelector(".box");
+	var pic=document.querySelector(".pic");
+	var lis=document.querySelectorAll(".list>li");
+	var timer=null;
+	var index=0;
+
+	function auto(){
+      timer=setInterval(function(){
+      	index++;
+      	if(index>=lis.length){
+      		index=0;
+      	}
+      	change(index);
+      }
+      	,2000);
+	}
+    auto();
+
+	function change(curIndex){
+		pic.style.marginLeft = -600 * curIndex + 'px';
+		for(var i=0; i<lis.length; i++){
+			lis[i].className="";
+		} 
+		lis[curIndex].className="on";
+		index=curIndex;
+	}
+
+	box.onmouseover=function(){
+		clearInterval(timer);
+	}
+
+	box.onmouseout=auto;
+
+	for(var i=0; i<lis.length; i++){
+		lis[i].item=i;
+		lis[i].onmouseover=function(){
+			change(this.item);
+		}
+	}
+}
+</script>
+
+</body>
+</html>
