@@ -50,6 +50,34 @@
   	text-align:center;
   	cursor:pointer;
   }
+  .box .prev{
+  	width:60px;
+  	height:60px;
+  	position:absolute;
+  	left:0;
+  	top:120px;
+  	font-size:36px;
+  	font-weight:bold;
+  	line-height:60px;
+  	text-align:center;
+  	color:#fff;
+  }
+  .box .next{
+  	width:60px;
+  	height:60px;
+  	position:absolute;
+  	right:0;
+  	top:120px;
+  	font-size:36px;
+  	font-weight:bold;
+  	line-height:60px;
+  	text-align:center;
+  	color:#fff;
+  }
+  .box .prev:hover, .box .next:hover{
+  	background-color:#000;
+  	cursor:pointer;
+  }
   </style>
 </head>
 
@@ -73,6 +101,10 @@
       <li>5</li>
       <li>6</li>
     </ul>
+
+    <div class="prev">&lt;</div>
+    <div class="next">&gt;</div>
+
   </div>
 
 <script type="text/javascript">
@@ -80,6 +112,8 @@ window.onload=function(){
 	var box=document.querySelector(".box");
 	var pic=document.querySelector(".pic");
 	var lis=document.querySelectorAll(".list>li");
+	var prev=document.querySelector(".prev");
+	var next=document.querySelector(".next");
 	var timer=null;
 	var index=0;
 
@@ -115,6 +149,24 @@ window.onload=function(){
 		lis[i].onmouseover=function(){
 			change(this.item);
 		}
+	}
+
+	prev.onclick=function(){
+		if(index===0){
+			index=lis.length;
+		}
+		if(index<=lis.length){
+			index--;
+		}
+		change(index);
+	}
+
+	next.onclick=function(){
+		index++;
+		if(index>=lis.length){
+			index=0;
+		}
+		change(index);
 	}
 }
 </script>
