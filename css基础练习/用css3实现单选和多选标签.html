@@ -1,0 +1,82 @@
+<!Doctype html>
+<html lang="zh-cn">
+
+<head>
+   <meta charset="UTF-8">
+   <style>
+   /*多选*/
+   .box label input{
+      display:none;
+    }
+   .box label span{
+      border:1px solid red;
+      border-radius:20px;
+      margin:10px;
+      padding:5px;
+    }
+   .box label input:checked+span{
+     background-color:blue;
+    }
+
+    /*单选*/
+    .box1{
+      margin-top:30px;
+    }
+   .box1 label input{
+      display:none;
+    }
+   .box1 label span{
+      border:1px solid blue;
+      border-radius:20px;
+      margin:10px;
+      padding:5px;
+    }
+   .box1 label input:checked+span{
+     background-color:red;
+    }
+
+   </style>
+</head>
+
+<body>
+   
+   <!-- 多选 -->
+   <div class="box">
+      <label>
+      <input type="checkBox" name="tages" value="北京">
+      <span>北京</span>
+      </label>
+
+      <label>
+      <input type="checkBox" name="tages" value="上海">
+      <span>上海</span>
+      </label>
+
+      <label>
+      <input type="checkBox" name="tages" value="广州">
+      <span>广州</span>
+      </label>
+   </div>
+
+   <!-- 单选 -->
+   <div class="box1">
+      <label>
+      <input type="radio" name="tages" value="北京">
+      <span>北京</span>
+      </label>
+
+      <label>
+      <input type="radio" name="tages" value="上海">
+      <span>上海</span>
+      </label>
+
+      <label>
+      <input type="radio" name="tages" value="广州">
+      <span>广州</span>
+      </label>
+   </div>
+
+
+
+</body>
+</html>
