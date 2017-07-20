@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+</head>
+
+<body>
+
+<script type="text/javascript">
+    /*思路如下：首先使用字符串中的substr方法取得字符串中第一个字母，然后通过replace方法全局替换掉得到一个新的字符串，然后判断原来字符串和新字符串的长度，如此循环比较，代码和注释如下：*/
+
+	var str = "asdfjksdjfljsdflkjsdjf" //定义需要判断的字符串
+	var maxlength = 0; //用来存最大数量的变量，并初始化为0
+	var result; //用来接收结果
+
+	while(str != ""){
+	  var oldstr = str; 
+	  var getstr = str.substr(0,1);
+	  str = str.replace(new RegExp(getstr,"g"),"");
+	  if(oldstr.length - str.length >maxlength){
+	      maxlength = oldstr.length - str.length;
+	      result = getstr + '='+ maxlength;
+	    }
+	}
+	console.log(result);
+
+</script>
+
+</body>
+</html> 
